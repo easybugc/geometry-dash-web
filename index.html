@@ -30,12 +30,6 @@
   </style>
 </head>
 <body>
-  <div id="menuScreen" width="960" height="720">
-    <h1>Geometry Dash Web</h1>
-    <button id="startButton">Start Game</button>
-    <button id="optionsButton">Options</button>
-    <button id="creditsButton">Credits</button>
-  </div>
   <canvas id="gameCanvas" width="960" height="720"></canvas>
   <button id="startButton">Start Game</button>
   <script>
@@ -159,55 +153,6 @@
     }
 
     document.addEventListener('keydown', handleKeyPress);
-
-    startButton.addEventListener('click', function() {
-      startButton.style.display = 'none';
-      player.y = 550;
-      player.speedY = 0;
-      obstacles = [];
-      blocks = [];
-      generateMap();
-      gameOver = false;
-    });
-
-    setInterval(function() {
-      update();
-      draw();
-    }, 1000 / 60);
-
-    generateMap();
-
-        startButton.addEventListener('click', function() {
-      player = {
-        x: 50,
-        y: 550,
-        speedY: 0
-      };
-      obstacles = [];
-      blocks = [];
-      generateMap();
-      gameOver = false;
-      menuScreen.style.display = 'none';
-      gameLoop();
-    });
-
-    optionsButton.addEventListener('click', function() {
-      // Show options screen
-    });
-
-    creditsButton.addEventListener('click', function() {
-      // Show credits screen
-    });
-
-    function gameLoop() {
-      update();
-      draw();
-      if (!gameOver) {
-        requestAnimationFrame(gameLoop);
-      }
-    }
-
-    menuScreen.style.display = 'block';
   </script>
 </body>
 </html>
