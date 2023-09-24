@@ -9,9 +9,33 @@
             background-size: cover;
             background-repeat: no-repeat;
     }
+    #menuScreen {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      display: none;
+    }
+    #menuScreen h1 {
+      color: black;
+      font-size: 48px;
+      margin-bottom: 32px;
+    }
+    #menuScreen button {
+      font-size: 24px;
+      padding: 16px 32px;
+      margin: 16px;
+    }
   </style>
 </head>
 <body>
+  <div id="menuScreen" width="960" height="720">
+    <h1>Geometry Dash Web</h1>
+    <button id="startButton">Start Game</button>
+    <button id="optionsButton">Options</button>
+    <button id="creditsButton">Credits</button>
+  </div>
   <canvas id="gameCanvas" width="960" height="720"></canvas>
   <button id="startButton">Start Game</button>
   <script>
@@ -152,6 +176,38 @@
     }, 1000 / 60);
 
     generateMap();
+
+        startButton.addEventListener('click', function() {
+      player = {
+        x: 50,
+        y: 550,
+        speedY: 0
+      };
+      obstacles = [];
+      blocks = [];
+      generateMap();
+      gameOver = false;
+      menuScreen.style.display = 'none';
+      gameLoop();
+    });
+
+    optionsButton.addEventListener('click', function() {
+      // Show options screen
+    });
+
+    creditsButton.addEventListener('click', function() {
+      // Show credits screen
+    });
+
+    function gameLoop() {
+      update();
+      draw();
+      if (!gameOver) {
+        requestAnimationFrame(gameLoop);
+      }
+    }
+
+    menuScreen.style.display = 'block';
   </script>
 </body>
 </html>
