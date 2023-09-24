@@ -9,24 +9,6 @@
             background-size: cover;
             background-repeat: no-repeat;
     }
-    #menuScreen {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      display: none;
-    }
-    #menuScreen h1 {
-      color: black;
-      font-size: 48px;
-      margin-bottom: 32px;
-    }
-    #menuScreen button {
-      font-size: 24px;
-      padding: 16px 32px;
-      margin: 16px;
-    }
   </style>
 </head>
 <body>
@@ -153,6 +135,23 @@
     }
 
     document.addEventListener('keydown', handleKeyPress);
+
+    startButton.addEventListener('click', function() {
+      startButton.style.display = 'none';
+      player.y = 550;
+      player.speedY = 0;
+      obstacles = [];
+      blocks = [];
+      generateMap();
+      gameOver = false;
+    });
+
+    setInterval(function() {
+      update();
+      draw();
+    }, 1000 / 60);
+
+    generateMap();
   </script>
 </body>
 </html>
