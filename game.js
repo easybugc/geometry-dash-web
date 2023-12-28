@@ -63,3 +63,40 @@ setInterval(function() {
 }, 1000 / 60);
 
 generateMap();
+
+let imagesLoaded = 0;
+let totalImages = 3; // Total number of images to load
+
+function imageLoaded() {
+  imagesLoaded++;
+  if (imagesLoaded === totalImages) {
+    startGame();
+  }
+}
+
+playerImage.onload = imageLoaded;
+obstacleImage.onload = imageLoaded;
+blockImage.onload = imageLoaded;
+
+function startGame() {
+  // Attach event listeners and start the game loop
+  document.addEventListener('keydown', handleKeyPress);
+  startButton.addEventListener('click', startButtonHandler);
+  setInterval(gameLoop, 1000 / 60);
+  generateMap();
+}
+
+function startButtonHandler() {
+  startButton.style.display = 'none';
+  player.y = 550;
+  player.speedY = 0;
+  obstacles = [];
+  blocks = [];
+  generateMap();
+  gameOver = false;
+}
+
+function gameLoop() {
+  update();
+  draw();
+}
